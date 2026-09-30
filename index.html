@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pokédex | Trang web chính thức của Pokémon Việt Nam</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- TOP HEADER -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo-wrap">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon" class="main-logo" /></a>
+    </div>
+    <nav class="main-nav">
+      <a href="#">Thông tin</a>
+      <a href="#">TV / Phim</a>
+      <a href="#">Sản phẩm</a>
+      <a href="#">Ứng dụng</a>
+      <a href="tcg.html">Thẻ bài</a>
+    </nav>
+    <a href="#" class="dict-btn">Từ điển Pokémon</a>
+  </div>
+</header>
+
+<!-- HERO TITLE -->
+<section class="hero-title">
+  <h1>Pokédex</h1>
+</section>
+
+<!-- HERO CAROUSEL -->
+<section class="hero" id="hero">
+  <div class="hero-strip strip-top"><div class="track" id="trackTop"></div></div>
+  <div class="hero-middle"></div>
+  <div class="hero-strip strip-bottom"><div class="track reverse" id="trackBottom"></div></div>
+  <div class="hero-center">
+    <div class="center-circle">
+      <img id="featuredImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/791.png" alt="featured" />
+    </div>
+    <div class="center-name" id="featuredName">Solgaleo</div>
+  </div>
+  <button class="hero-arrow left" id="prevBtn">‹</button>
+  <button class="hero-arrow right" id="nextBtn">›</button>
+</section>
+
+<!-- LIST HEADER -->
+<section class="list-header">
+  <div class="list-header-inner">
+    <div class="pokedex-logo">Pokédex</div>
+    <div class="controls">
+      <div class="select-wrap">
+        <select id="sortSelect">
+          <option value="asc">Số thấp nhất (trước)</option>
+          <option value="desc">Số cao nhất (trước)</option>
+          <option value="az">Tên A - Z</option>
+          <option value="za">Tên Z - A</option>
+        </select>
+        <span class="select-arrow">﹀</span>
+      </div>
+      <button class="search-btn" id="searchToggle">Tìm kiếm <span>🔍</span></button>
+    </div>
+  </div>
+  <div class="search-panel" id="searchPanel"></div>
+</section>
+
+<!-- SEARCH MODAL giống web gốc -->
+<div class="search-modal" id="searchModal">
+  <div class="search-box">
+    <div class="search-head">
+      <h2>Tìm kiếm</h2>
+      <button class="search-close" id="searchClose">⊗</button>
+    </div>
+    <div class="search-body">
+      <div class="f-searchbar">
+        <input type="text" id="fSearchText" placeholder="Nhập tên hoặc số No. (VD: Pikachu, 0025)" />
+        <button class="f-go" id="fGo">🔍</button>
+      </div>
+      <h3 class="f-title">Hệ</h3>
+      <div class="f-types" id="fTypeGrid"></div>
+      <h3 class="f-title">Vùng</h3>
+      <div class="f-regions" id="fRegionGrid"></div>
+      <div class="f-row2">
+        <div class="f-col">
+          <h3 class="f-title">Đặc tính</h3>
+          <div class="select-wrap f-ability-wrap">
+            <select id="fAbility"><option value="all">All</option></select>
+            <span class="select-arrow">﹀</span>
+          </div>
+        </div>
+        <div class="f-col">
+          <h3 class="f-title">Số</h3>
+          <div class="f-num" id="fNumLabel">0001 - 1025</div>
+          <div class="f-range">
+            <input type="range" id="fMin" min="1" max="1025" value="1" />
+            <input type="range" id="fMax" min="1" max="1025" value="1025" />
+            <div class="f-track"><div class="f-fill" id="fFill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="f-actions">
+        <button class="f-reset" id="fReset">Thiết lập lại</button>
+        <button class="f-submit" id="fSubmit">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
+<main class="grid-wrap">
+  <div class="grid" id="grid"></div>
+  <div class="load-more-wrap"><button id="loadMore" class="load-more">Xem thêm</button></div>
+</main>
+
+<!-- DETAIL MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-no" id="mNo">No.0001</div>
+    <h2 id="mName">Bulbasaur</h2>
+    <div class="modal-types" id="mTypes"></div>
+    <div class="modal-img"><img id="mImg" src="" alt="" /></div>
+    <div class="modal-info">
+      <div><span>Chiều cao</span><b id="mHeight">0.7 m</b></div>
+      <div><span>Cân nặng</span><b id="mWeight">6.9 kg</b></div>
+      <div><span>Hệ</span><b id="mTypeText"></b></div>
+    </div>
+    <div class="modal-desc" id="mDesc">Pokémon Hạt Giống. Thích tắm nắng để lớn lên.</div>
+  </div>
+</div>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-imgs"><span>● Nyahoja ● Hogator ● Kuwassu ● Pikachu</span></div>
+    <div class="foot-links">
+      <a href="#">Pokémon là gì?</a><a href="#">Điều khoản sử dụng</a><a href="#">Chính sách bảo mật</a><a href="#">Sơ đồ trang web</a>
+    </div>
+    <p>©Pokémon. ©Nintendo/Creatures Inc./GAME FREAK inc. ©Nintendo, Creatures, GAME FREAK, TV Tokyo, ShoPro, JR Kikaku.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

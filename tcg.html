@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thẻ bài | Pokédex Việt Nam</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo-wrap">
+      <a href="index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon" class="main-logo" /></a>
+    </div>
+    <nav class="main-nav">
+      <a href="#">Thông tin</a>
+      <a href="#">TV / Phim</a>
+      <a href="#">Sản phẩm</a>
+      <a href="#">Ứng dụng</a>
+      <a href="tcg.html" class="active">Thẻ bài</a>
+    </nav>
+    <a href="index.html" class="dict-btn">Từ điển Pokémon</a>
+  </div>
+</header>
+
+<section class="hero-title">
+  <h1>Thẻ bài</h1>
+  <p class="tcg-sub">Dữ liệu từ <a href="https://tcgdex.dev" target="_blank" rel="noopener">TCGdex API</a> • <code>api.tcgdex.net/v2/en</code></p>
+</section>
+
+<section class="list-header">
+  <div class="list-header-inner tcg-bar">
+    <div class="select-wrap">
+      <select id="tcgSet"></select>
+      <span class="select-arrow">﹀</span>
+    </div>
+    <div class="f-searchbar tcg-search">
+      <input type="text" id="tcgQ" placeholder="Tìm tên thẻ... (VD: Charizard)" />
+      <button class="f-go" id="tcgGo">🔍</button>
+    </div>
+  </div>
+</section>
+
+<main class="grid-wrap">
+  <p class="tcg-count" id="tcgCount">Đang tải...</p>
+  <div class="tcg-grid" id="tcgGrid"></div>
+</main>
+
+<div class="modal" id="tcgModal">
+  <div class="modal-card tcg-modal-card">
+    <button class="modal-close" id="tcgClose">✕</button>
+    <div class="modal-no" id="tSet">sv01 • 001</div>
+    <h2 id="tName">...</h2>
+    <div class="modal-img"><img id="tImg" src="" alt="" /></div>
+    <div class="modal-info" id="tInfo"></div>
+    <div class="modal-desc" id="tDesc"></div>
+    <div class="modal-types" id="tAttacks"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-links"><a href="index.html">Pokédex</a><a href="https://tcgdex.dev" target="_blank" rel="noopener">TCGdex API</a></div>
+    <p>©Pokémon. ©Nintendo/Creatures Inc./GAME FREAK inc. Thẻ bài: dữ liệu & ảnh từ TCGdex.</p>
+  </div>
+</footer>
+
+<script src="tcg.js"></script>
+</body>
+</html>
